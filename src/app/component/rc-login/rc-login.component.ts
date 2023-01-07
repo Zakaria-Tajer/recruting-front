@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from 'src/app/service/auth.service';
-import { loginInfos } from './rc-login-Interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginResponse } from 'src/app/interfaces/LoginResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rc-login',
@@ -15,15 +15,15 @@ export class RcLoginComponent implements OnInit{
   facebookIcon = faFacebookF;
   googleIcon = faGoogle;
 
-  body = new URLSearchParams();
+  // body = new URLSearchParams();
   options = {
     headers: new HttpHeaders({
-      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*"
     })
   };
  
-  constructor(private http: HttpClient, private service : AuthService){
+  constructor(private router: Router ,private service : AuthService){
   }
 
 
@@ -73,24 +73,22 @@ export class RcLoginComponent implements OnInit{
   onSubmit(): void {
     let { email, password } = this.form.value;
 
-    let loginInfo: any = {email: email, password: password};
+    let loginInfo = {email: email, password: password};
 
-    if(email == '' || password == '') {
+    if(email == "" || password == "") {
       this.form.setErrors({error:true, message: 'The email or password is invalid'})
     }else {
-
-      console.log('h');
-      this.body.set('email', loginInfo.email);
-      this.body.set('password', loginInfo.password);
-  
       
-      this.http.post("http://localhost:8011/login",this.body.toString(), this.options).subscribe(response => {
-        console.log(response);
-        
+      this.service.login(loginInfo, this.options).subscribe((authData: LoginResponse) => {
+          if(authData.message === "unauthenticated" || authData.token === null) {
+            this.form.setErrors({ authenticated: false, message: 'inccorect email or password' });
+          }else {
+            localStorage.setItem('token', authData.token);
+            this.router.navigate(['/rcDashboard']);
+          }
+
       });
     }    
   }
-    // this.router.navigate(['/rcDashboard'])
-
   
 }

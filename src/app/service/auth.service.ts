@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { loginInfos } from '../component/rc-login/rc-login-Interface';
+import { LoginInfos } from '../component/rc-login/rc-login-Interface';
+import { LoginResponse } from '../interfaces/LoginResponse';
 
 
 @Injectable({
@@ -9,15 +10,17 @@ import { loginInfos } from '../component/rc-login/rc-login-Interface';
 export class AuthService {
 
 
-  private url = 'http://localhost:8099/login';
+  private url = 'http://localhost:8091/api/v1/recruiter/login';
 
   constructor(private http : HttpClient) { }
 
-  login(loginInfo: string, headers: {headers: HttpHeaders}){
-    
-    console.log('ye');
-    
-    return this.http.post(this.url, loginInfo, headers);
+  login(loginInfo: LoginInfos, headers: {headers: HttpHeaders}){
+        
+    return this.http.post<LoginResponse>(this.url, loginInfo, headers);
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('token');
   }
 
 

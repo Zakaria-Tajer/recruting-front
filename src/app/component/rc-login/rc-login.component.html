@@ -31,6 +31,10 @@
   <p class="font-montserrat text-white">{{form.errors?.['message']}}</p>
 </div>
 
+<div *ngIf="form.errors?.['authenticated'] == false" class="w-3/4 py-3 text-center bg-[#FF9494] rounded-md">
+  <p class="font-montserrat text-white">{{form.errors?.['message']}}</p>
+</div>
+
 <div class="w-3/4 space-y-4">
 <div class="py-2 w-full space-y-2">
   <label for="em" class="block text-md font-montserrat">Email</label>
