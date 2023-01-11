@@ -22,7 +22,7 @@ export class RcLoginComponent implements OnInit{
       "Access-Control-Allow-Origin": "*"
     })
   };
- 
+
   constructor(private router: Router ,private service : AuthService){
   }
 
@@ -40,7 +40,7 @@ export class RcLoginComponent implements OnInit{
 
 
   ngOnInit() {
-    
+
     const emailError = this.form.get('email');
     const passwordError = this.form.get('password');
 
@@ -57,7 +57,7 @@ export class RcLoginComponent implements OnInit{
 
 
   private validateEmailControl(): void {
-    if (this.form.controls.email.hasError('email') || this.form.controls.email.hasError('required')) {      
+    if (this.form.controls.email.hasError('email') || this.form.controls.email.hasError('required')) {
       this.form.controls.email.setErrors({incorrect: true, message: 'Please enter a valid email'})
     }
 
@@ -78,9 +78,9 @@ export class RcLoginComponent implements OnInit{
     if(email == "" || password == "") {
       this.form.setErrors({error:true, message: 'The email or password is invalid'})
     }else {
-      
+
       this.service.login(loginInfo, this.options).subscribe((authData: LoginResponse) => {
-          if(authData.message === "unauthenticated" || authData.token === null) {
+          if(authData.message === "unauthenticated" || authData.token === null || authData.message === "wrong password" ) {
             this.form.setErrors({ authenticated: false, message: 'inccorect email or password' });
           }else {
             localStorage.setItem('token', authData.token);
@@ -88,7 +88,7 @@ export class RcLoginComponent implements OnInit{
           }
 
       });
-    }    
+    }
   }
-  
+
 }

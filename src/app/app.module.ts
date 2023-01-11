@@ -8,12 +8,14 @@ import { RcLoginComponent } from './component/rc-login/rc-login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RcDashboardComponent } from './component/rc-dashboard/rc-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RcLoginComponent,
     RcDashboardComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
