@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RcDashboardComponent } from './component/rc-dashboard/rc-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import {NavbarComponent} from "./component/navbar/navbar.component";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
     RcLoginComponent,
     RcDashboardComponent,
     SidebarComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
