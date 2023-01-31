@@ -10,6 +10,10 @@ import { RcDashboardComponent } from './component/rc-dashboard/rc-dashboard.comp
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import {NavbarComponent} from "./component/navbar/navbar.component";
+import { OffersTableComponent } from './component/offers-table/offers-table.component';
+import { CreateOfferComponent } from './component/create-offer/create-offer.component';
+import { AgentLoginComponent } from './component/agent/agent-login/agent-login.component';
+import { AgentDashboardComponent } from './component/agent/agent-dashboard/agent-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import {NavbarComponent} from "./component/navbar/navbar.component";
     RcDashboardComponent,
     SidebarComponent,
     NavbarComponent,
+    OffersTableComponent,
+    CreateOfferComponent,
+    AgentLoginComponent,
+    AgentDashboardComponent,
   ],
   imports: [
     BrowserModule,

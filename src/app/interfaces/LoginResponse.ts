@@ -5,4 +5,9 @@ export interface LoginResponse {
     statusMessage: string;
     message: string;
 
+    loginInfo: {
+      imagePic: String;
+      username: String
+    }
+
 }

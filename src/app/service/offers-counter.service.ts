@@ -22,9 +22,9 @@ export class OffersCounterService {
 
   constructor(private http : HttpClient) { }
 
-  getOffersCount(offerStatus: dashboardInfos){
+  getOffersCount(){
 
-    return this.http.post<number>(this.url, offerStatus, this.options);
+    return this.http.get<OffersStatusCount>(this.url, this.options);
   }
 
 

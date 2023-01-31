@@ -8,4 +8,12 @@
   .window {
     width: 100%;
   }
+  .windowForm {
+    width: 60%;
+  }
+  .offer {
+    width: 60%;
+  }
+
+
 }

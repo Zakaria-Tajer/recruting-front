@@ -1,66 +1,67 @@
-
 <div class="w-full min-h-screen flex items-center justify-center">
 
-  
+
   <form [formGroup]="form"
-  class="py-10 bg-white rounded-md px-2 h-fit space-y-10 flex items-center flex-col shadow-xl w-1/3" (submit)="onSubmit()">
+    class="py-10 bg-white rounded-md px-2 h-fit space-y-10 flex items-center flex-col shadow-xl w-1/3"
+    (submit)="onSubmit()">
 
-<h1 class="font-poppins text-2xl md:text-4xl mt-4">Welcome Again</h1>
+    <h1 class="font-poppins text-2xl md:text-4xl mt-4">Welcome Again</h1>
 
-<div class="w-3/4 py-2 px-2 flex items-center justify-center space-x-4">
+    <div class="w-3/4 py-2 px-2 flex items-center justify-center space-x-4">
 
-<div
-  class="w-1/2 h-16 border-[1px] bg-[#3B5998] hover:bg-[#a64bf4]  hover:bg-gradient-to-r hover:from-[#00dbde] hover:to-[#fc00ff] duration-500 shadow-md cursor-pointer rounded-md flex items-center justify-center space-x-4">
-  <fa-icon [icon]="facebookIcon" class="text-white text-xl"></fa-icon>
-  <h2 class="text-xl text-white font-montserrat">Facebook</h2>
-</div>
+      <!--<div-->
+      <!--  class="w-1/2 h-16 border-[1px] bg-[#3B5998] hover:bg-[#a64bf4]  hover:bg-gradient-to-r hover:from-[#00dbde] hover:to-[#fc00ff] duration-500 shadow-md cursor-pointer rounded-md flex items-center justify-center space-x-4">-->
+      <!--  <fa-icon [icon]="facebookIcon" class="text-white text-xl"></fa-icon>-->
+      <!--  <h2 class="text-xl text-white font-montserrat">Facebook</h2>-->
+      <!--</div>-->
 
-<div
-  class="w-1/2 h-16 border-[1px] hover:bg-[#a64bf4]  hover:bg-gradient-to-r hover:from-[#00dbde] hover:to-[#fc00ff] duration-500 hover:text-white shadow-md cursor-pointer rounded-md flex items-center justify-center space-x-4">
-  <fa-icon [icon]="googleIcon" class="text-xl"></fa-icon>
-  <h2 class="text-xl font-montserrat">Google</h2>
-</div>
+      <!--<div-->
+      <!--  class="w-1/2 h-16 border-[1px] hover:bg-[#a64bf4]  hover:bg-gradient-to-r hover:from-[#00dbde] hover:to-[#fc00ff] duration-500 hover:text-white shadow-md cursor-pointer rounded-md flex items-center justify-center space-x-4">-->
+      <!--  <fa-icon [icon]="googleIcon" class="text-xl"></fa-icon>-->
+      <!--  <h2 class="text-xl font-montserrat">Google</h2>-->
+      <!--</div>-->
 
-</div>
+    </div>
 
-<div  *ngIf="form.controls.email.errors?.['incorrect'] || form.controls.password.errors?.['incorrect']" class="w-3/4 py-3 text-center bg-[#FF9494] rounded-md">
-  <p class="font-montserrat text-white">{{form.controls.email.errors?.['message'] || form.controls.password.errors?.['message']}}</p>
+    <div *ngIf="form.controls.email.errors?.['incorrect'] || form.controls.password.errors?.['incorrect']"
+      class="w-3/4 py-3 text-center bg-[#FF9494] rounded-md">
+      <p [class.active]="" class="font-montserrat text-white">{{form.controls.email.errors?.['message'] ||
+        form.controls.password.errors?.['message']}}</p>
 
-</div>
-<div *ngIf="form.errors?.['error']" class="w-3/4 py-3 text-center bg-[#FF9494] rounded-md">
-  <p class="font-montserrat text-white">{{form.errors?.['message']}}</p>
-</div>
+    </div>
+    <div *ngIf="form.errors?.['error']" class="w-3/4 py-3 text-center bg-[#FF9494] rounded-md">
+      <p class="font-montserrat text-white">{{form.errors?.['message']}}</p>
+    </div>
 
-<div *ngIf="form.errors?.['authenticated'] == false" class="w-3/4 py-3 text-center bg-[#FF9494] rounded-md">
-  <p class="font-montserrat text-white">{{form.errors?.['message']}}</p>
-</div>
+    <div *ngIf="form.errors?.['authenticated'] == false" class="w-3/4 py-3 text-center bg-[#FF9494] rounded-md">
+      <p class="font-montserrat text-white">{{form.errors?.['message']}}</p>
+    </div>
 
-<div class="w-3/4 space-y-4">
-<div class="py-2 w-full space-y-2">
-  <label for="em" class="block text-md font-montserrat">Email</label>
-  <input  formControlName="email" type="email"  id="em" placeholder="example@gmail.com"
-         class="w-full border-b-4 focus:border-indigo-700 outline-none rounded-md  py-3 px-3">
-</div>
+    <div class="w-3/4 space-y-4">
+      <div class="py-2 w-full space-y-2">
+        <label for="em" class="block text-md font-montserrat">Email</label>
+        <input formControlName="email" type="email" id="em" placeholder="example@gmail.com"
+          class="w-full border-b-4 focus:border-indigo-700 outline-none rounded-md  py-3 px-3">
+      </div>
 
-<div class="py-2 w-full space-y-2">
-  <div class="flex items-center space-x-2 w-fit justify-center">
-    <label for="password" class="block text-md font-montserrat">Password</label>
-    <h2
-      class="font-light text-sm font-poppins text-gray-600 underline underline-offset-4 hover:text-indigo-900 cursor-pointer">
-      Forgot ?</h2>
-  </div>
-  <input formControlName="password" type="password"  id="password" placeholder="********"
-         class="w-full border-b-4 focus:border-indigo-700 outline-none rounded-md  py-3 px-3">
-</div>
+      <div class="py-2 w-full space-y-2">
+        <div class="flex items-center space-x-2 w-fit justify-center">
+          <label for="password" class="block text-md font-montserrat">Password</label>
+          <h2
+            class="font-light text-sm font-poppins text-gray-600 underline underline-offset-4 hover:text-indigo-900 cursor-pointer">
+            Forgot ?</h2>
+        </div>
+        <input formControlName="password" type="password" id="password" placeholder="********"
+          class="w-full border-b-4 focus:border-indigo-700 outline-none rounded-md  py-3 px-3">
+      </div>
 
-</div>
+    </div>
 
-<button
-type="submit"
-class="w-3/4 bg-[#333] py-4 rounded-md text-white font-montserrat hover:bg-gradient-to-r hover:from-[#00dbde] hover:to-[#fc00ff] duration-500 hover:text-white">
-Login
-</button>
+    <button type="submit"
+      class="w-3/4 bg-[#333] py-4 rounded-md text-white font-montserrat hover:bg-gradient-to-r hover:from-[#00dbde] hover:to-[#fc00ff] duration-500 hover:text-white">
+      Login
+    </button>
 
-</form>
+  </form>
 </div>
 <router-outlet></router-outlet>

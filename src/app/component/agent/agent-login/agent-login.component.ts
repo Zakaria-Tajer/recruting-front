@@ -1,32 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { AuthService } from 'src/app/service/auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginResponse } from 'src/app/interfaces/LoginResponse';
 import { Router } from '@angular/router';
-import {LoginDataObsService} from "../../service/login-data-obs.service";
-import {UserData} from "../../interfaces/UserData";
+import { LoginResponse } from 'src/app/interfaces/LoginResponse';
+import { AgentLoginService } from 'src/app/service/agent/agent-login.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
-  selector: 'rc-login',
-  templateUrl: './rc-login.component.html',
-  styleUrls: ['./rc-login.component.css']
+  selector: 'app-agent-login',
+  templateUrl: './agent-login.component.html',
+  styleUrls: ['./agent-login.component.css']
 })
-export class RcLoginComponent implements OnInit{
-
-  facebookIcon = faFacebookF;
-  googleIcon = faGoogle;
-
-  // body = new URLSearchParams();
-  options = {
-    headers: new HttpHeaders({
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
-    })
-  };
-
-  constructor(private router: Router ,private service : AuthService, private loginService: LoginDataObsService){
+export class AgentLoginComponent {
+constructor(private router: Router, private service: AgentLoginService){
   }
 
 
@@ -82,33 +67,23 @@ export class RcLoginComponent implements OnInit{
       this.form.setErrors({error:true, message: 'The email or password is invalid'})
     }else {
 
-      this.service.login(loginInfo, this.options).subscribe((authData: LoginResponse) => {
+      this.service.login(loginInfo).subscribe((authData: LoginResponse) => {
+
+        console.log(authData);
+        
           if(authData.message === "unauthenticated" || authData.token === null || authData.message === "wrong password" ) {
             this.form.setErrors({ authenticated: false, message: 'inccorect email or password' });
           }else {
-          this.loginService.loginDataShare.subscribe((data: LoginResponse) => {
-            data.loginInfo.username = authData.loginInfo.username
-            data.loginInfo.imagePic = authData.loginInfo.imagePic
-          });
-
-
           
-          this.loginService.updateUser(authData.loginInfo as unknown as UserData);
-
-
-
-            sessionStorage.setItem('username', authData.loginInfo.username as string);
-            sessionStorage.setItem('imagePic', authData.loginInfo.imagePic as string);
             localStorage.setItem('token', authData.token);
 
 
             console.log(authData);
             
-            this.router.navigate(['/rcDashboard']);
+            this.router.navigate(['/agentDashboard']);
           }
 
       });
     }
   }
-
 }

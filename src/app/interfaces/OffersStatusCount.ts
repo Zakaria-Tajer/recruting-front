@@ -1,4 +1,7 @@
 export interface OffersStatusCount {
-   count: number;
+  publishedOffers: number | null;
+  unpublishedOffers: number | null;
+  acceptedOffers: number | null;
+  TotalUsersAppliedJob: number | null;
 
 }
